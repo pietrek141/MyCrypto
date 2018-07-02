@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyCrypto</string>
+    <string name="string_coinName">blahblahName</string>
+    <string name="string_coinSymbol">blahsymbol</string>
+</resources>
