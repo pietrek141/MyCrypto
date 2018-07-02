@@ -58,12 +58,14 @@ public class MyCoinCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
                 Log.d("MyCursorAdapter", "Deleted: " + coinSymbol);
+                Log.d("Some stuff", "bla: " + coinSymbol);
 
                 myCoinRepo.deleteFromMyCoinByName(coinSymbol);
 
                 StartActivity.updateMyCrypto();
             }
         });
+
 
     }
 
