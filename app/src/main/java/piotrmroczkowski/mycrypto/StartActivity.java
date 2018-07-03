@@ -18,13 +18,13 @@ import android.widget.Toast;
 public class StartActivity extends AppCompatActivity {
 
     Cursor cursor;
-    ListView everyCoinlistView;
+    static ListView everyCoinListView;
     static ListView myCoinListView;
-    EveryCoinRepo everyCoinRepo = new EveryCoinRepo(MyApplication.getAppContext());
+    EveryCoinRepo everyCoinRepo = new EveryCoinRepo();
     static MyCoinRepo myCoinRepo = new MyCoinRepo(MyApplication.getAppContext());
     ViewGroup container;
     String[] columns = {"NAME", "SYMBOL"};
-    int[] resourceIds = {R.id.textview_list_row_coinName, R.id.textview_list_row_coinSymbol};
+    int[] resourceIds = {R.id.autoFitTextView_list_row_coinName, R.id.textview_list_row_coinSymbol};
     ImageButton addCryptoButton;
     LayoutInflater inflater;
     SearchView searchView;
@@ -35,20 +35,12 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         CryptoDatabaseHelper.instance(this);
-        everyCoinlistView = (ListView) findViewById(R.id.listViewEveryCoin);
-        everyCoinlistView.setItemsCanFocus(true);
+        everyCoinListView = (ListView) findViewById(R.id.listViewEveryCoin);
+        everyCoinListView.setItemsCanFocus(true);
         myCoinListView = (ListView) findViewById(R.id.listViewMyCoin);
         searchView = (SearchView) findViewById(R.id.searchView);
-
-/*        inflater = getLayoutInflater();
-        View convertView = (ConstraintLayout)inflater.inflate(R.layout.listview_everycoin_row,null );
-        addCryptoButton = (ImageButton)convertView.findViewById(R.id.button_add_to_MyCrypto);
-        addCryptoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("ON CLICKED", "clicked");
-            }
-        });*/
+        everyCoinListView.setVisibility(View.GONE);
+        myCoinListView.setVisibility(View.VISIBLE);
 
         ApiConnection connection = new ApiConnection();
         connection.letsDoSomeNetworking(ApiConnection.URL_COIN_LIST);
@@ -59,7 +51,8 @@ public class StartActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
+                everyCoinListView.setVisibility(View.VISIBLE);
+                myCoinListView.setVisibility(View.GONE);
                 Log.d("SEARCH", "OnQueryTextSubmit");
                 showEveryCoinList(query);
                 if (cursor == null) {
@@ -72,8 +65,19 @@ public class StartActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String query) {
+                everyCoinListView.setVisibility(View.VISIBLE);
+                myCoinListView.setVisibility(View.GONE);
                 Log.d("SEARCH", "OnQueryTextChange");
                 showEveryCoinList(query);
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                everyCoinListView.setVisibility(View.GONE);
+                myCoinListView.setVisibility(View.VISIBLE);
+                Log.d("On search view close", "closed");
                 return false;
             }
         });
@@ -82,25 +86,25 @@ public class StartActivity extends AppCompatActivity {
     public static void updateMyCrypto() {
 
         Cursor cursor = myCoinRepo.getCryptoCurrencyList();
-        ListAdapter listAdapter = new MyCoinCursorAdapter(MyApplication.getAppContext(),cursor);
+        ListAdapter listAdapter = new MyCoinCursorAdapter(MyApplication.getAppContext(), cursor);
         myCoinListView.setAdapter(listAdapter);
         getMyCoinPrices();
     }
 
     public void showEveryCoinList(String query) {
         cursor = everyCoinRepo.getCryptoCurrencyListByKeyword(query);
-        ListAdapter listAdapter = new EveryCoinCursorAdapter(this,  cursor);
-        everyCoinlistView.setAdapter(listAdapter);
+        ListAdapter listAdapter = new EveryCoinCursorAdapter(this, cursor);
+        everyCoinListView.setAdapter(listAdapter);
     }
 
     public static void initMyCryptoView() {
 
         Cursor cursor = myCoinRepo.getCryptoCurrencyList();
-        ListAdapter listAdapter = new MyCoinCursorAdapter(MyApplication.getAppContext(),cursor);
+        ListAdapter listAdapter = new MyCoinCursorAdapter(MyApplication.getAppContext(), cursor);
         myCoinListView.setAdapter(listAdapter);
     }
 
-    public static void getMyCoinPrices(){
+    public static void getMyCoinPrices() {
         Cursor cursor = myCoinRepo.getCryptoCurrencyList();
         apiConnection.getCoinPrices(cursor);
     }

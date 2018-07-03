@@ -19,8 +19,8 @@ import static piotrmroczkowski.mycrypto.Cryptocurrency.everyCoinList;
 
 public class ApiConnection {
 
-    EveryCoinRepo everyCoinRepo = new EveryCoinRepo(MyApplication.getAppContext());
-    MyCoinRepo myCoinRepo = new MyCoinRepo(MyApplication.getAppContext());
+    private EveryCoinRepo everyCoinRepo = new EveryCoinRepo();
+    private MyCoinRepo myCoinRepo = new MyCoinRepo(MyApplication.getAppContext());
     // AsyncInsert asyncInsert = new AsyncInsert(MyApplication.getAppContext());
     static final String URL_COIN_LIST = "https://www.cryptocompare.com/api/data/coinlist/";
     static final String URL_COIN_PRICE = "https://min-api.cryptocompare.com/data/pricemulti?tsyms=PLN,USD&fsyms=";

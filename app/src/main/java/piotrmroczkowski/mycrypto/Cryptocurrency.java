@@ -53,9 +53,9 @@ public class Cryptocurrency {
         }
     }
 
-    public static Map pricesFromJson(List<String> listOfCoins, JSONObject jsonObject){
+    public static Map<String, String> pricesFromJson(List<String> listOfCoins, JSONObject jsonObject){
 
-        Map<String , String> coinAndPrices = new HashMap<>();
+        Map<String, String> coinAndPrices = new HashMap<>();
         try{
             for (String listItem:listOfCoins) {
 

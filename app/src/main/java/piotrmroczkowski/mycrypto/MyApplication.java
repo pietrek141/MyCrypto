@@ -14,11 +14,6 @@ public class MyApplication extends Application {
         MyApplication.context = getApplicationContext();
     }
 
- /*   public void addButtonClicked(View v){
-
-        Log.d("ON CLICKED 2", "clicked 2");
-    }*/
-
     public static Context getAppContext() {
         return MyApplication.context;
     }

@@ -12,29 +12,8 @@ import static piotrmroczkowski.mycrypto.Cryptocurrency.everyCoinList;
 public class EveryCoinRepo {
     private CryptoDatabaseHelper dbHelper;
 
-    public EveryCoinRepo(Context context) {
+    public EveryCoinRepo() {
         dbHelper = CryptoDatabaseHelper.instance(MyApplication.getAppContext());
-    }
-
-    public static String readFromEveryCoin(CryptoDatabaseHelper helper) {
-
-        SQLiteDatabase readableDatabase = helper.getReadableDatabase();
-        String result = "";
-
-        Cursor cursor = readableDatabase.query("EVERY_COIN", new String[]{"NAME", "SYMBOL"}, "_id = ?",
-                new String[]{Integer.toString(1)},
-                null,
-                null,
-                null);
-        if (cursor.moveToFirst()) {
-            result = cursor.getString(1);
-
-        }
-        cursor.close();
-        readableDatabase.close();
-
-        return result;
-
     }
 
 
@@ -78,7 +57,7 @@ public class EveryCoinRepo {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =
                 "SELECT _id, " + "NAME, "
-                        + "SYMBOL " + "FROM EVERY_COIN" + " WHERE NAME LIKE '%" + search + "%'";
+                        + "SYMBOL " + "FROM EVERY_COIN" + " WHERE NAME LIKE '" + search + "%'" + " ORDER BY NAME";
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor == null) {
