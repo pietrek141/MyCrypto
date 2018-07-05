@@ -22,25 +22,23 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="273dp">
 
-
-
         <ListView
             android:id="@+id/listViewEveryCoin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/lightLime"
+            android:background="@color/Lime50"
             android:focusable="false"/>
         <ListView
             android:id="@+id/listViewMyCoin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/lightDeepPurple"
             android:clickable="true"
             android:cursorVisible="true"
-            android:focusable="false"
+            android:focusable="true"
             android:focusableInTouchMode="true"
             android:enabled="true"
+            android:background="@color/brown50"
             android:textIsSelectable="true"/>
 
 

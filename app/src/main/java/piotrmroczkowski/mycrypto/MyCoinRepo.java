@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.Map;
 
@@ -39,7 +40,16 @@ public class MyCoinRepo {
 
     }
 
-    public void insertToMyCoinByName(String symbol, String price) {
+    public void insertToMyCoinByName(String symbol, String price) throws NumberFormatException {
+        try {
+            if (price.equals("")) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            Toast.makeText(MyApplication.getAppContext(), "Buy price is empty!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         ContentValues coinValues = new ContentValues();
         coinValues.put("SYMBOL", symbol);

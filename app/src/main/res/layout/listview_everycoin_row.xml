@@ -13,17 +13,17 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="30sp"
         android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
+        android:layout_marginRight="5sp"
         android:layout_marginTop="20sp"
         android:focusable="false"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:focusable="false"
-            android:layout_marginHorizontal="2sp"
+            android:layout_marginBottom="2sp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -65,9 +65,10 @@
                 android:layout_weight="1.4"
                 android:clickable="true"
                 android:focusable="true"
-                android:hint="buy price"
+                android:hint="@string/string_buyPriceHint"
                 android:inputType="numberDecimal"
                 android:textColor="@color/colorPrimaryDark"
+                android:layout_gravity="bottom"
                 android:textSize="14sp" />
 
 
@@ -84,7 +85,7 @@
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:focusable="false"
-                android:layout_marginVertical="1sp"
+                android:layout_gravity="end"
                 android:src="@android:drawable/ic_menu_add" />
 
         </LinearLayout>

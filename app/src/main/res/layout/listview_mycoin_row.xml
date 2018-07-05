@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto">
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="20sp"
+    android:layout_marginBottom="30sp"
+    android:layout_marginStart="20sp"
+    android:layout_marginEnd="5sp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="20sp"
-        android:layout_marginBottom="30sp"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
-        android:orientation="horizontal">
-        <TextView
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:orientation="horizontal"
+        >
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/textview_myCoinList_row_coinSymbol"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,9 +30,12 @@
             android:text="@string/string_coinName"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="32sp"
-            android:textColor="@color/colorPrimaryDark"/>
+            autofit:minTextSize="22sp"
+            android:minLines="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="bottom|start"/>
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/textview_myCoinList_row_coinPrice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,25 +43,39 @@
             android:text="@string/string_coinName"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="25sp"
-            android:textColor="@color/colorPrimaryDark"/>
+            autofit:minTextSize="16sp"
+            android:minLines="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginStart="2sp"
+            android:gravity="bottom|end"
+            />
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/textview_myCoinList_row_percent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/string_coinName"
+            android:layout_marginLeft="5dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="25sp"
-            android:textColor="@color/colorPrimaryDark"/>
+            autofit:minTextSize="16sp"
+            android:minLines="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginStart="2sp"
+            android:gravity="bottom|end"/>
+
+
 
         <ImageButton
             android:id="@+id/button_delete_from_MyCrypto"
             style="@android:style/Widget.Material.Light.ImageButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:focusable="false"
-            android:src="@android:drawable/ic_delete" />
+            android:src="@android:drawable/ic_delete"
+            android:layout_marginStart="1sp"
+            android:layout_gravity="bottom"/>
     </LinearLayout>
 </LinearLayout>
 

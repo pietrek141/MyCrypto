@@ -2,6 +2,7 @@ package piotrmroczkowski.mycrypto;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import me.grantland.widget.AutofitTextView;
 
@@ -25,6 +27,19 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
 
     String coinPrice;
     MyCoinRepo myCoinRepo = new MyCoinRepo(getAppContext());
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View view = super.getView(position, convertView, parent);
+
+        if (position % 2 == 1) {
+            view.setBackgroundColor(ContextCompat.getColor(MyApplication.getAppContext(), R.color.Lime100));
+        } else {
+            view.setBackgroundColor(ContextCompat.getColor(MyApplication.getAppContext(), R.color.Lime200));
+        }
+
+        return view;
+    }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
