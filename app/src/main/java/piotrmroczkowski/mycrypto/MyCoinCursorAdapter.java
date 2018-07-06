@@ -20,7 +20,7 @@ public class MyCoinCursorAdapter extends CursorAdapter {
         super(context, c, 0);
     }
 
-    MyCoinRepo myCoinRepo = new MyCoinRepo(MyApplication.getAppContext());
+    MyCoinRepo myCoinRepo = new MyCoinRepo();
     TextView percent;
 
     @Override
@@ -47,11 +47,11 @@ public class MyCoinCursorAdapter extends CursorAdapter {
 
         final Cursor c = cursor;
 
-        ImageButton deleteCryptoButton = (ImageButton) view.findViewById(R.id.button_delete_from_MyCrypto);
+        ImageButton deleteCryptoButton = view.findViewById(R.id.button_delete_from_MyCrypto);
 
-        TextView coinName = (TextView) view.findViewById(R.id.textview_myCoinList_row_coinSymbol);
-        TextView coinPrice = (TextView) view.findViewById(R.id.textview_myCoinList_row_coinPrice);
-        percent = (TextView) view.findViewById(R.id.textview_myCoinList_row_percent);
+        TextView coinName = view.findViewById(R.id.textview_myCoinList_row_coinSymbol);
+        TextView coinPrice = view.findViewById(R.id.textview_myCoinList_row_coinPrice);
+        percent = view.findViewById(R.id.textview_myCoinList_row_percent);
 
         String symbol = c.getString(cursor.getColumnIndex("SYMBOL"));
         String lastPrice = c.getString(cursor.getColumnIndex("LAST_PRICE"));
@@ -74,7 +74,7 @@ public class MyCoinCursorAdapter extends CursorAdapter {
 
                 myCoinRepo.deleteFromMyCoinByName(coinSymbol);
 
-                StartActivity.updateMyCrypto();
+                ViewManager.updateMyCrypto();
             }
         });
     }

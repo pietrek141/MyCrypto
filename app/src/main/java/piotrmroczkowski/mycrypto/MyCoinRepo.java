@@ -1,7 +1,6 @@
 package piotrmroczkowski.mycrypto;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,7 +13,7 @@ public class MyCoinRepo {
 
     private CryptoDatabaseHelper dbHelper;
 
-    public MyCoinRepo(Context context) {
+    public MyCoinRepo() {
         dbHelper = CryptoDatabaseHelper.instance(MyApplication.getAppContext());
     }
 
@@ -108,4 +107,6 @@ public class MyCoinRepo {
         db.close();
         return cursor;
     }
+
+
 }

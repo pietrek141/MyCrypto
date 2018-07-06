@@ -13,11 +13,8 @@ import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import me.grantland.widget.AutofitTextView;
-
-import static piotrmroczkowski.mycrypto.MyApplication.getAppContext;
 
 
 public class EveryCoinCursorAdapter extends CursorAdapter {
@@ -26,7 +23,8 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
     }
 
     String coinPrice;
-    MyCoinRepo myCoinRepo = new MyCoinRepo(getAppContext());
+    MyCoinRepo myCoinRepo = new MyCoinRepo();
+    ViewManager viewManager = new ViewManager();
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -49,6 +47,7 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
         View view = inflater.inflate(R.layout.listview_everycoin_row, parent, false);
         holder.coinName = (AutofitTextView) view.findViewById(R.id.autoFitTextView_list_row_coinName);
         holder.coinSymbol = (TextView) view.findViewById(R.id.textview_list_row_coinSymbol);
+        //ImageButton
         holder.addCryptoButton = (ImageButton) view.findViewById(R.id.button_add_to_MyCrypto);
         holder.buyPriceInput = (EditText) view.findViewById(R.id.editText_buyPrice);
         view.setTag(holder);
@@ -107,9 +106,9 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
 
                 coinPrice = holder.buyPriceInput.getText().toString();
                 myCoinRepo.insertToMyCoinByName(coinSymbol, coinPrice);
-                StartActivity.updateMyCrypto();
-                StartActivity.everyCoinListView.setVisibility(View.GONE);
-                StartActivity.myCoinListView.setVisibility(View.VISIBLE);
+                ViewManager.updateMyCrypto();
+                ViewManager.everyCoinListView.setVisibility(View.GONE);
+                ViewManager.myCoinListView.setVisibility(View.VISIBLE);
             }
 
         });

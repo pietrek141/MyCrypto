@@ -33,7 +33,7 @@
             autofit:minTextSize="22sp"
             android:minLines="1"
             android:textColor="@color/colorPrimaryDark"
-            android:gravity="bottom|start"/>
+            android:gravity="center|start" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/textview_myCoinList_row_coinPrice"
@@ -44,10 +44,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="25sp"
             autofit:minTextSize="16sp"
-            android:minLines="1"
+            android:maxLines="1"
             android:textColor="@color/colorPrimaryDark"
             android:layout_marginStart="2sp"
-            android:gravity="bottom|end"
+            android:gravity="center|end"
             />
 
         <me.grantland.widget.AutofitTextView
@@ -58,12 +58,12 @@
             android:text="@string/string_coinName"
             android:layout_marginLeft="5dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="25sp"
+            android:textSize="20sp"
             autofit:minTextSize="16sp"
             android:minLines="1"
             android:textColor="@color/colorPrimaryDark"
             android:layout_marginStart="2sp"
-            android:gravity="bottom|end"/>
+            android:gravity="center|end" />
 
 
 
@@ -75,7 +75,7 @@
             android:focusable="false"
             android:src="@android:drawable/ic_delete"
             android:layout_marginStart="1sp"
-            android:layout_gravity="bottom"/>
+            android:layout_gravity="center|bottom" />
     </LinearLayout>
 </LinearLayout>
 

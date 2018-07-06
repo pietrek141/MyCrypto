@@ -1,8 +1,10 @@
 package piotrmroczkowski.mycrypto;
 
 import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,10 +13,8 @@ import java.util.Map;
 
 public class Cryptocurrency {
 
-
     public static List<Cryptocurrency> everyCoinList = new ArrayList<Cryptocurrency>();
     public static List<Cryptocurrency> myCoinList = new ArrayList<Cryptocurrency>();
-
 
     public Cryptocurrency(String name, String symbol) {
         this.name = name;
@@ -23,7 +23,7 @@ public class Cryptocurrency {
     }
 
 
-    public static List<Cryptocurrency> fromJson(JSONObject jsonObject) {
+    public static void parseJson(JSONObject jsonObject) {
 
         try {
 
@@ -44,12 +44,9 @@ public class Cryptocurrency {
 
             }
             Log.d("Every Coin List Size", String.valueOf(everyCoinList.size()));
-            return everyCoinList;
-
 
         } catch (JSONException e) {
             e.printStackTrace();
-            return null;
         }
     }
 

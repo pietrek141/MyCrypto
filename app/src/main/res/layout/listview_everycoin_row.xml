@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:autofit="http://schemas.android.com/apk/res-auto"
     tools:context=".StartActivity">
 
@@ -67,6 +66,7 @@
                 android:focusable="true"
                 android:hint="@string/string_buyPriceHint"
                 android:inputType="numberDecimal"
+                android:textColorHint="@color/colorPrimaryDark"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_gravity="bottom"
                 android:textSize="14sp" />

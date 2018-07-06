@@ -20,7 +20,7 @@ import static piotrmroczkowski.mycrypto.Cryptocurrency.everyCoinList;
 public class ApiConnection {
 
     private EveryCoinRepo everyCoinRepo = new EveryCoinRepo();
-    private MyCoinRepo myCoinRepo = new MyCoinRepo(MyApplication.getAppContext());
+    private MyCoinRepo myCoinRepo = new MyCoinRepo();
     // AsyncInsert asyncInsert = new AsyncInsert(MyApplication.getAppContext());
     static final String URL_COIN_LIST = "https://www.cryptocompare.com/api/data/coinlist/";
     static final String URL_COIN_PRICE = "https://min-api.cryptocompare.com/data/pricemulti?tsyms=PLN,USD&fsyms=";
@@ -33,7 +33,7 @@ public class ApiConnection {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
-                Cryptocurrency.fromJson(response);
+                Cryptocurrency.parseJson(response);
                 everyCoinRepo.insert();
 
                 Log.d("API Connection", "Updated");
@@ -86,7 +86,7 @@ public class ApiConnection {
                 Map<String, String> coinAndPrices;
                 coinAndPrices = Cryptocurrency.pricesFromJson(myCoinSymbolList, response);
                 myCoinRepo.updateMyCoin(coinAndPrices);
-                StartActivity.initMyCryptoView();
+                ViewManager.initMyCryptoView();
 
                 Log.d("API Prices Connection", "Updated");
             }
