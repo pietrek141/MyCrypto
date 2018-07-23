@@ -8,8 +8,11 @@
     <color name="brown50">#EFEBE9</color>
     <color name="brown100">#D7CCC8</color>
     <color name="brown200">#BCAAA4</color>
+    <color name="brown900">#3E2723</color>
     <color name="Green800">#2E7D32</color>
     <color name="Lime50">#F9FBE7</color>
     <color name="Lime100">#F0F4C3</color>
     <color name="Lime200">#E6EE9C</color>
+    <color name="Black">#000000</color>
+    <color name="White">#FFFFFF</color>
 </resources>

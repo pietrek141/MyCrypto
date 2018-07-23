@@ -1,83 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:autofit="http://schemas.android.com/apk/res-auto">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="20sp"
-    android:layout_marginBottom="30sp"
-    android:layout_marginStart="20sp"
-    android:layout_marginEnd="5sp"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="5sp"
-        android:layout_marginBottom="5sp"
-        android:orientation="horizontal"
-        >
-        <me.grantland.widget.AutofitTextView
-            android:id="@+id/textview_myCoinList_row_coinSymbol"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30sp"
+        android:layout_marginEnd="5sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="20sp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/myCoinRowLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5sp"
+            android:layout_marginTop="5sp"
             android:layout_weight="1"
-            android:text="@string/string_coinName"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="32sp"
-            autofit:minTextSize="22sp"
-            android:minLines="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="center|start" />
+            android:orientation="horizontal">
 
-        <me.grantland.widget.AutofitTextView
-            android:id="@+id/textview_myCoinList_row_coinPrice"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/string_coinName"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="25sp"
-            autofit:minTextSize="16sp"
-            android:maxLines="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_marginStart="2sp"
-            android:gravity="center|end"
-            />
+            <ImageSwitcher
+                android:id="@+id/imageSwitcherWalletEye"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="2sp"
+                android:layout_gravity="center|start" />
 
-        <me.grantland.widget.AutofitTextView
-            android:id="@+id/textview_myCoinList_row_percent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/string_coinName"
-            android:layout_marginLeft="5dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="20sp"
-            autofit:minTextSize="16sp"
-            android:minLines="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_marginStart="2sp"
-            android:gravity="center|end" />
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/textview_myCoinList_row_coinSymbol"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:minLines="1"
+                android:text="@string/string_coinName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="32sp"
+                autofit:minTextSize="22sp" />
+
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/textview_myCoinList_row_coinPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2sp"
+                android:layout_weight="1"
+                android:gravity="center|end"
+                android:maxLines="1"
+                android:text="@string/string_coinName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="25sp"
+                autofit:minTextSize="16sp" />
+
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/textview_myCoinList_row_percent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="2sp"
+                android:layout_weight="1"
+                android:gravity="center|end"
+                android:minLines="1"
+                android:text="@string/string_coinName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                autofit:minTextSize="16sp" />
 
 
-
-        <ImageButton
-            android:id="@+id/button_delete_from_MyCrypto"
-            style="@android:style/Widget.Material.Light.ImageButton"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:focusable="false"
-            android:src="@android:drawable/ic_delete"
-            android:layout_marginStart="1sp"
-            android:layout_gravity="center|bottom" />
+            <ImageButton
+                android:id="@+id/button_delete_from_MyCrypto"
+                style="@android:style/Widget.Material.Light.ImageButton"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginStart="1sp"
+                android:focusable="false"
+                android:src="@android:drawable/ic_delete" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
 

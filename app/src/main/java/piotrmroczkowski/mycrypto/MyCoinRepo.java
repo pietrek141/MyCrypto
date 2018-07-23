@@ -39,7 +39,7 @@ public class MyCoinRepo {
 
     }
 
-    public void insertToMyCoinByName(String symbol, String price) throws NumberFormatException {
+    public void insertToMyCoinByName(String name, String symbol, String price) throws NumberFormatException {
         try {
             if (price.equals("")) {
                 throw new NumberFormatException();
@@ -51,6 +51,7 @@ public class MyCoinRepo {
 
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         ContentValues coinValues = new ContentValues();
+        coinValues.put("NAME", name);
         coinValues.put("SYMBOL", symbol);
         coinValues.put("BUY_PRICE", price);
         writableDatabase.insert("MY_CRYPTO", null, coinValues);
@@ -61,15 +62,24 @@ public class MyCoinRepo {
         writableDatabase.close();
     }
 
+    public void updateAmountInMyCoinBySymbol(int amount, String symbol) throws NumberFormatException {
+
+        SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
+        ContentValues coinValues = new ContentValues();
+        coinValues.put("AMOUNT", amount);
+        writableDatabase.update("MY_CRYPTO", coinValues, "SYMBOL = '" + symbol + "'", null);
+
+    }
+
     public void updateMyCoin(Map<String, String> map) {
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         ContentValues coinValues = new ContentValues();
 
         for (Map.Entry<String, String> entry : map.entrySet()) {
             String price = entry.getValue();
-            String name = entry.getKey();
+            String symbol = entry.getKey();
             coinValues.put("LAST_PRICE", price);
-            writableDatabase.update("MY_CRYPTO", coinValues, "SYMBOL = '" + name + "'", null);
+            writableDatabase.update("MY_CRYPTO", coinValues, "SYMBOL = '" + symbol + "'", null);
         }
 
         writableDatabase.close();
@@ -92,9 +102,12 @@ public class MyCoinRepo {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =
-                "SELECT _id, " + "SYMBOL, "
+                "SELECT _id, "
+                        + "NAME, "
+                        + "SYMBOL, "
                         + "BUY_PRICE, "
-                        + "LAST_PRICE "
+                        + "LAST_PRICE, "
+                        + "AMOUNT "
                         + "FROM MY_CRYPTO";
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -108,5 +121,47 @@ public class MyCoinRepo {
         return cursor;
     }
 
+    public Cursor getCryptoCurrencybySymbol(String symbol) {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selectQuery =
+                "SELECT _id, "
+                        + "NAME, "
+                        + "SYMBOL, "
+                        + "BUY_PRICE, "
+                        + "LAST_PRICE, "
+                        + "AMOUNT "
+                        + "FROM MY_CRYPTO"
+                        + " WHERE SYMBOL LIKE '" + symbol + "%'";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor == null) {
+            return null;
+        } else if (!cursor.moveToFirst()) {
+            cursor.close();
+            return null;
+        }
+        db.close();
+        return cursor;
+    }
+
+    public Cursor getAllMoney() {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selectQuery =
+                "SELECT SUM(BUY_PRICE * AMOUNT) AS 'BUY_MONEY_SUM', SUM(LAST_PRICE * AMOUNT) AS 'LAST_MONEY_SUM'"
+                        + " FROM MY_CRYPTO"
+                        + " WHERE AMOUNT IS NOT NULL";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor == null) {
+            return null;
+        } else if (!cursor.moveToFirst()) {
+            cursor.close();
+            return null;
+        }
+        db.close();
+        return cursor;
+    }
 
 }

@@ -31,11 +31,12 @@ public class CryptoDatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS " + "MY_CRYPTO");
         db.execSQL("CREATE TABLE IF NOT EXISTS MY_CRYPTO ( _id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "NAME TEXT, "
                 + "SYMBOL TEXT, "
                 + "BUY_PRICE REAL, "
                 + "LAST_PRICE REAL, "
+                + "AMOUNT INTEGER, "
                 + "BUY_DATE NUMERIC);");
-
     }
 
     @Override
@@ -43,9 +44,5 @@ public class CryptoDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + "EVERY_COIN");
         onCreate(db);
     }
-
-
-
-
 
 }

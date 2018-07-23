@@ -68,6 +68,7 @@
                 android:inputType="numberDecimal"
                 android:textColorHint="@color/colorPrimaryDark"
                 android:textColor="@color/colorPrimaryDark"
+                android:backgroundTint="@null"
                 android:layout_gravity="bottom"
                 android:textSize="14sp" />
 

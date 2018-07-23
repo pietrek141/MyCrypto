@@ -3,4 +3,17 @@
     <string name="string_coinName">...</string>
     <string name="string_coinSymbol">...</string>
     <string name="string_buyPriceHint">buy price</string>
+    <string name="string_name">Name</string>
+    <string name="string_symbol">Symbol</string>
+    <string name="detail_lastPrice">Last Price:</string>
+    <string name="detail_buyPrice">Buy Price:</string>
+    <string name="detail_Amount">Amount:</string>
+    <string name="detail_Money">Money</string>
+    <string name="detail_lastPrice_value">...USD</string>
+    <string name="detail_buyPrice_value">...USD</string>
+    <string name="detail_Amount_value">put your amount</string>
+    <string name="detail_percent">Gain/Loos:</string>
+    <string name="detail_percent_value">...USD</string>
+    <string name="master_Money">Money</string>
+    <string name="master_Percent">%</string>
 </resources>

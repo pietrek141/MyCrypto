@@ -2,7 +2,6 @@ package piotrmroczkowski.mycrypto;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.text.DecimalFormat;
+import android.widget.ViewSwitcher;
 
 
 public class MyCoinCursorAdapter extends CursorAdapter {
@@ -21,7 +22,7 @@ public class MyCoinCursorAdapter extends CursorAdapter {
     }
 
     MyCoinRepo myCoinRepo = new MyCoinRepo();
-    TextView percent;
+    static TextView percent;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -36,31 +37,49 @@ public class MyCoinCursorAdapter extends CursorAdapter {
         return view;
     }
 
-
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return LayoutInflater.from(context).inflate(R.layout.listview_mycoin_row, parent, false);
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, Cursor cursor) {
 
         final Cursor c = cursor;
 
         ImageButton deleteCryptoButton = view.findViewById(R.id.button_delete_from_MyCrypto);
 
-        TextView coinName = view.findViewById(R.id.textview_myCoinList_row_coinSymbol);
+        final TextView coinName = view.findViewById(R.id.textview_myCoinList_row_coinSymbol);
         TextView coinPrice = view.findViewById(R.id.textview_myCoinList_row_coinPrice);
         percent = view.findViewById(R.id.textview_myCoinList_row_percent);
+        ImageSwitcher walletEye = view.findViewById(R.id.imageSwitcherWalletEye);
+        walletEye.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                ImageView imageView = new ImageView(context);
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                return imageView;
+            }
+        });
+
+        final LinearLayout myCoinRow = view.findViewById(R.id.myCoinRowLayout);
 
         String symbol = c.getString(cursor.getColumnIndex("SYMBOL"));
         String lastPrice = c.getString(cursor.getColumnIndex("LAST_PRICE"));
         String buyPrice = c.getString(cursor.getColumnIndex("BUY_PRICE"));
+        String amount = c.getString(cursor.getColumnIndex("AMOUNT"));
 
         coinName.setText(symbol);
-        coinPrice.setText(lastPrice);
+
         if (buyPrice != null || buyPrice.equals("") && lastPrice != null || lastPrice.equals(""))
-            percent.setText(calculatePercent(buyPrice, lastPrice));
+            percent.setText(ViewManager.calculatePercent(buyPrice, lastPrice, percent));
+
+        coinPrice.setText(String.format("$%s", lastPrice));
+
+        if (amount != null)
+            walletEye.setImageResource(R.drawable.wallet);
+        else
+            walletEye.setImageResource(R.drawable.eye);
 
         deleteCryptoButton.setOnClickListener(new View.OnClickListener() {
 
@@ -69,38 +88,22 @@ public class MyCoinCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
                 Log.d("MyCursorAdapter", "Deleted: " + coinSymbol);
-                Log.d("Some stuff", "bla: " + coinSymbol);
-                Log.d("Some pull request", "bla: " + coinSymbol);
-
                 myCoinRepo.deleteFromMyCoinByName(coinSymbol);
-
                 ViewManager.updateMyCrypto();
+            }
+        });
+
+        myCoinRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv = v.findViewById(R.id.textview_myCoinList_row_coinSymbol);
+                Log.d("bla2", String.valueOf(tv.getText()));
+                MasterFragment.mListener.itemClicked(String.valueOf(tv.getText()));
+
+                //ViewManager.initMyCryptoDetailView();
             }
         });
     }
 
 
-    String calculatePercent(String buyPrice, String lastPrice) {
-        Double percentValue = 0.0;
-        try {
-            buyPrice.replace(",", ".");
-            percentValue = (Double.parseDouble(lastPrice) / Double.parseDouble(buyPrice)) - 1;
-        } catch (Exception e) {
-            Log.d("CALCULATE PERCENT", "Buy Price is empty");
-        }
-
-        percentValue = percentValue * 100;
-        DecimalFormat df2 = new DecimalFormat("#.##");
-
-        String result = df2.format(percentValue);
-        if (Double.parseDouble(result) >= 0) {
-            result = "+" + result + "%";
-            percent.setTextColor(ContextCompat.getColor(MyApplication.getAppContext(), R.color.Green800));
-        } else {
-            result = result + "%";
-            percent.setTextColor(Color.RED);
-        }
-
-        return result;
-    }
 }

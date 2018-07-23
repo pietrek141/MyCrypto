@@ -74,6 +74,7 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 coinPrice = holder.buyPriceInput.getText().toString();
+
             }
 
             @Override
@@ -99,16 +100,18 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
         holder.addCryptoButton.setOnClickListener(new View.OnClickListener() {
 
             private String coinSymbol = c.getString(c.getColumnIndex("SYMBOL"));
+            private String coinName = c.getString(c.getColumnIndex("NAME"));
 
             @Override
             public void onClick(View v) {
                 Log.d("MyCursorAdapter", "Added: " + coinSymbol);
 
                 coinPrice = holder.buyPriceInput.getText().toString();
-                myCoinRepo.insertToMyCoinByName(coinSymbol, coinPrice);
+                myCoinRepo.insertToMyCoinByName(coinName, coinSymbol, coinPrice);
                 ViewManager.updateMyCrypto();
                 ViewManager.everyCoinListView.setVisibility(View.GONE);
                 ViewManager.myCoinListView.setVisibility(View.VISIBLE);
+                holder.buyPriceInput.getText().clear();
             }
 
         });
