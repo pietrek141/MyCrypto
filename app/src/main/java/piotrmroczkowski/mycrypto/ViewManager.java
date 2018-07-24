@@ -49,8 +49,9 @@ public class ViewManager {
         DecimalFormat df2 = new DecimalFormat("$#.##");
         String allLastMoneyToShow = df2.format(allLastMoneyValue);
         String allPercentToShow = calculatePercent(allBuyMoneyValue.toString(), allLastMoneyValue.toString(), allPercent);
-        allMoney.setText(allLastMoneyToShow);
         allPercent.setText(allPercentToShow);
+        allMoney.setText(allLastMoneyToShow);
+
     }
 
     private static void getMyCoinPrices() {
@@ -66,14 +67,14 @@ public class ViewManager {
 
     public static String calculatePercent(String buyPrice, String lastPrice, TextView percentTextView) {
         Double percentValue = 0.0;
-        try {
-            buyPrice.replace(",", ".");
-            percentValue = (Double.parseDouble(lastPrice) / Double.parseDouble(buyPrice)) - 1;
-        } catch (Exception e) {
-            Log.d("CALCULATE PERCENT", "Buy Price is empty");
-        }
-
-        percentValue = percentValue * 100;
+/*        if (lastPrice == null)
+            return percentValue.toString();*/
+        if (Double.parseDouble(lastPrice) != 0 && Double.parseDouble(buyPrice) != 0)
+            try {
+                percentValue = ((Double.parseDouble(lastPrice) / Double.parseDouble(buyPrice)) - 1) * 100;
+            } catch (Exception e) {
+                Log.d("CALCULATE PERCENT", "Buy Price is empty");
+            }
         DecimalFormat df2 = new DecimalFormat("#.##");
 
         String result = df2.format(percentValue);

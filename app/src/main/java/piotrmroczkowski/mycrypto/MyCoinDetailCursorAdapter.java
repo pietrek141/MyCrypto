@@ -1,3 +1,4 @@
+/*
 package piotrmroczkowski.mycrypto;
 
 import android.content.Context;
@@ -24,7 +25,7 @@ public class MyCoinDetailCursorAdapter extends CursorAdapter {
     MyCoinRepo myCoinRepo = new MyCoinRepo();
     TextView percentDetail;
 
-/*  @Override
+  @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
 
@@ -35,7 +36,8 @@ public class MyCoinDetailCursorAdapter extends CursorAdapter {
         }
 
         return view;
-    }*/
+    }
+
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
@@ -121,3 +123,4 @@ public class MyCoinDetailCursorAdapter extends CursorAdapter {
         EditText amountInputDetail;
     }
 }
+*/

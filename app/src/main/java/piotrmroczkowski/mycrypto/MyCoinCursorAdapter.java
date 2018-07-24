@@ -71,7 +71,7 @@ public class MyCoinCursorAdapter extends CursorAdapter {
 
         coinName.setText(symbol);
 
-        if (buyPrice != null || buyPrice.equals("") && lastPrice != null || lastPrice.equals(""))
+        if (buyPrice != null || buyPrice.equals("0") && lastPrice != null || lastPrice.equals("0"))
             percent.setText(ViewManager.calculatePercent(buyPrice, lastPrice, percent));
 
         coinPrice.setText(String.format("$%s", lastPrice));
