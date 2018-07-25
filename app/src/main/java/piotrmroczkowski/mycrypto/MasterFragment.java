@@ -2,7 +2,6 @@ package piotrmroczkowski.mycrypto;
 
 
 import android.app.Activity;
-import android.app.SearchManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -23,19 +21,17 @@ public class MasterFragment extends Fragment {
 
 
     Cursor cursor;
-    Cursor cursor2;
     ViewGroup container;
 
 
     public interface ItemClickListener {
-        public void itemClicked(String symbol);
+        void itemClicked(String symbol);
     }
 
     public static ItemClickListener mListener;
 
 
     public MasterFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -65,7 +61,7 @@ public class MasterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_master, container, false);
 
 
@@ -75,21 +71,19 @@ public class MasterFragment extends Fragment {
         ViewManager.searchView = view.findViewById(R.id.searchView);
         ViewManager.allMoney = view.findViewById(R.id.textview_master_all_money);
         ViewManager.allPercent = view.findViewById(R.id.textview_master_all_percent);
-        final LinearLayout myCoinRow = view.findViewById(R.id.myCoinRowLayout);
         ViewManager.everyCoinListView.setVisibility(View.GONE);
         ViewManager.myCoinListView.setVisibility(View.VISIBLE);
         ApiConnection connection = new ApiConnection();
-        connection.letsDoSomeNetworking(ApiConnection.URL_COIN_LIST);
-        ViewManager.initMyCryptoView();
+        connection.connectToAPI(ApiConnection.URL_COIN_LIST);
 
 
-        SearchManager manager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+/*        SearchManager manager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         //is it necessary?
         try {
             ViewManager.searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
         } catch (NullPointerException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         ViewManager.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

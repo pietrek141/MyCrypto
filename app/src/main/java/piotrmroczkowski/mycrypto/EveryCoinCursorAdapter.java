@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -45,11 +46,11 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
         ViewHolder holder = new ViewHolder();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.listview_everycoin_row, parent, false);
-        holder.coinName = (AutofitTextView) view.findViewById(R.id.autoFitTextView_list_row_coinName);
-        holder.coinSymbol = (TextView) view.findViewById(R.id.textview_list_row_coinSymbol);
-        //ImageButton
-        holder.addCryptoButton = (ImageButton) view.findViewById(R.id.button_add_to_MyCrypto);
-        holder.buyPriceInput = (EditText) view.findViewById(R.id.editText_buyPrice);
+        holder.coinName = view.findViewById(R.id.autoFitTextView_list_row_coinName);
+        holder.coinSymbol = view.findViewById(R.id.textview_list_row_coinSymbol);
+        holder.addCryptoButton = view.findViewById(R.id.button_add_to_MyCrypto);
+        holder.buyPriceInput = view.findViewById(R.id.editText_buyPrice);
+        holder.buyPriceInput = view.findViewById(R.id.editText_buyPrice);
         view.setTag(holder);
 
         return view;
@@ -64,17 +65,15 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
 
         String name = cursor.getString(cursor.getColumnIndex("NAME"));
         String symbol = cursor.getString(cursor.getColumnIndex("SYMBOL"));
-        holder.buyPriceInput = (EditText) view.findViewById(R.id.editText_buyPrice);
+
         holder.buyPriceInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 coinPrice = holder.buyPriceInput.getText().toString();
-
             }
 
             @Override
@@ -82,18 +81,7 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
                 coinPrice = holder.buyPriceInput.getText().toString();
             }
         });
-/*        holder.buyPriceInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus){
-                    holder.buyPriceInput.setText("");
-                }
-                else if(hasFocus){ }
-
-            }
-        });*/
         holder.coinName.setText(name);
         holder.coinSymbol.setText(symbol);
 
@@ -112,6 +100,7 @@ public class EveryCoinCursorAdapter extends CursorAdapter {
                 ViewManager.everyCoinListView.setVisibility(View.GONE);
                 ViewManager.myCoinListView.setVisibility(View.VISIBLE);
                 holder.buyPriceInput.getText().clear();
+                holder.buyPriceInput.onEditorAction(EditorInfo.IME_ACTION_DONE);
             }
 
         });

@@ -63,7 +63,7 @@ public class DetailFragment extends Fragment {
 
         final Cursor cursor = ViewManager.initMyCryptoDetailView(args.getString(ARG_SYMBOL));
 
-        updateView(holder, view, cursor);
+        updateView(holder, cursor);
         detailSymbol.setText(symbol);
 
         holder.addAmount.setOnClickListener(new View.OnClickListener() {
@@ -81,16 +81,17 @@ public class DetailFragment extends Fragment {
                     return;
                 }
                 myCoinRepo.updateAmountInMyCoinBySymbol(Integer.valueOf(amountInput), args.getString(ARG_SYMBOL));
-                updateView(holder, view, ViewManager.initMyCryptoDetailView(args.getString(ARG_SYMBOL)));
+                updateView(holder, ViewManager.initMyCryptoDetailView(args.getString(ARG_SYMBOL)));
                 holder.amountInputDetail.getText().clear();
                 holder.amountInputDetail.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                ViewManager.updateMyCrypto();
             }
         });
 
         return view;
     }
 
-    public void updateView(ViewHolder holder, View view, Cursor cursor) {
+    public void updateView(ViewHolder holder, Cursor cursor) {
 
         final Cursor c = cursor;
         //final ViewHolder holder = (ViewHolder) view.getTag();

@@ -13,15 +13,12 @@ import java.util.Map;
 
 public class Cryptocurrency {
 
-    public static List<Cryptocurrency> everyCoinList = new ArrayList<Cryptocurrency>();
-    public static List<Cryptocurrency> myCoinList = new ArrayList<Cryptocurrency>();
+    public static List<Cryptocurrency> everyCoinList = new ArrayList<>();
 
     public Cryptocurrency(String name, String symbol) {
         this.name = name;
         this.symbol = symbol;
-
     }
-
 
     public static void parseJson(JSONObject jsonObject) {
 
@@ -50,11 +47,11 @@ public class Cryptocurrency {
         }
     }
 
-    public static Map<String, String> pricesFromJson(List<String> listOfCoins, JSONObject jsonObject){
+    public static Map<String, String> pricesFromJson(List<String> listOfCoins, JSONObject jsonObject) {
 
         Map<String, String> coinAndPrices = new HashMap<>();
-        try{
-            for (String listItem:listOfCoins) {
+        try {
+            for (String listItem : listOfCoins) {
 
                 JSONObject jO = jsonObject.getJSONObject(listItem);
                 String price = jO.getString("USD");

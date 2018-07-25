@@ -12,7 +12,7 @@ public class StartActivity extends AppCompatActivity implements MasterFragment.I
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_master_detail);
         MasterFragment fragment = new MasterFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -23,8 +23,15 @@ public class StartActivity extends AppCompatActivity implements MasterFragment.I
 
     @Override
     public void itemClicked(String symbol) {
-
-        Intent intent = DetailActivity.newIntent(this, symbol);
-        startActivity(intent);
+        if (findViewById(R.id.frame_layout_detail) == null) {
+            Intent intent = DetailActivity.newIntent(this, symbol);
+            startActivity(intent);
+        } else {
+            DetailFragment fragment = DetailFragment.newFragment(symbol);
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.frame_layout_detail, fragment)
+                    .commit();
+        }
     }
 }

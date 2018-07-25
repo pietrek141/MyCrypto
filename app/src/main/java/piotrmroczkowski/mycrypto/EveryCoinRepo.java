@@ -1,55 +1,49 @@
 package piotrmroczkowski.mycrypto;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import java.util.List;
 
 import static piotrmroczkowski.mycrypto.Cryptocurrency.everyCoinList;
 
 public class EveryCoinRepo {
     private CryptoDatabaseHelper dbHelper;
 
-    public EveryCoinRepo() {
+    EveryCoinRepo() {
         dbHelper = CryptoDatabaseHelper.instance(MyApplication.getAppContext());
     }
 
 
     public void insert() {
 
-
-/*        new AsyncInsert.execute();
-
-        class AsyncInsert extends AsyncTask {
-
-            @Override
-            protected Object doInBackground(Object[] objects) {*/
         SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
         writableDatabase.delete("EVERY_COIN", null, null);
 
-        for (int i = 0; i < everyCoinList.size(); i++) {
-            String name = everyCoinList.get(i).getName();
-            String symbol = everyCoinList.get(i).getSymbol();
-            insertToEveryCoin(writableDatabase, name, symbol);
-        }
 
+        insertToEveryCoin(writableDatabase, everyCoinList);
         long count = DatabaseUtils.queryNumEntries(writableDatabase, "EVERY_COIN");
         String liczba = Long.toString(count);
         Log.d("DB Connection", liczba);
         writableDatabase.close();
-        //return null;
     }
 
-    // }
 
-
-    public void insertToEveryCoin(SQLiteDatabase db, String name, String symbol) {
-        ContentValues coinValues = new ContentValues();
-        coinValues.put("NAME", name);
-        coinValues.put("SYMBOL", symbol);
-        db.insert("EVERY_COIN", null, coinValues);
+    private void insertToEveryCoin(SQLiteDatabase db, List<Cryptocurrency> everyCoinList) {
+        db.beginTransaction();
+        for (int i = 0; i < everyCoinList.size(); i++) {
+            String name = everyCoinList.get(i).getName();
+            String symbol = everyCoinList.get(i).getSymbol();
+            ContentValues coinValues = new ContentValues();
+            coinValues.put("NAME", name);
+            coinValues.put("SYMBOL", symbol);
+            db.insert("EVERY_COIN", null, coinValues);
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
 
     public Cursor getCryptoCurrencyListByKeyword(String search) {

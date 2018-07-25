@@ -12,10 +12,11 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
+
 public class ViewManager {
 
-    public static Cursor cursor;
-    public static Cursor cursor2;
+    private static Cursor cursor;
+    private static Cursor cursor2;
     public static SearchView searchView;
     public static TextView allMoney;
     public static TextView allPercent;
@@ -43,7 +44,6 @@ public class ViewManager {
         cursor2 = myCoinRepo.getAllMoney();
         ListAdapter listAdapter = new MyCoinCursorAdapter(MyApplication.getAppContext(), cursor);
         myCoinListView.setAdapter(listAdapter);
-        //String allMoneyValue = String.valueOf(cursor2.getDouble(cursor2.getColumnIndex("MONEY_SUM")));
         BigDecimal allLastMoneyValue = new BigDecimal(cursor2.getDouble(cursor2.getColumnIndex("LAST_MONEY_SUM")));
         BigDecimal allBuyMoneyValue = new BigDecimal(cursor2.getDouble(cursor2.getColumnIndex("BUY_MONEY_SUM")));
         DecimalFormat df2 = new DecimalFormat("$#.##");
@@ -69,7 +69,7 @@ public class ViewManager {
         Double percentValue = 0.0;
 /*        if (lastPrice == null)
             return percentValue.toString();*/
-        if (Double.parseDouble(lastPrice) != 0 && Double.parseDouble(buyPrice) != 0)
+        if (lastPrice != null && Double.parseDouble(buyPrice) != 0)
             try {
                 percentValue = ((Double.parseDouble(lastPrice) / Double.parseDouble(buyPrice)) - 1) * 100;
             } catch (Exception e) {

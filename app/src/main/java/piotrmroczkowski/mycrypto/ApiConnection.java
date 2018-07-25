@@ -16,16 +16,14 @@ import cz.msebera.android.httpclient.Header;
 
 import static piotrmroczkowski.mycrypto.Cryptocurrency.everyCoinList;
 
-
 public class ApiConnection {
 
     private EveryCoinRepo everyCoinRepo = new EveryCoinRepo();
     private MyCoinRepo myCoinRepo = new MyCoinRepo();
-    // AsyncInsert asyncInsert = new AsyncInsert(MyApplication.getAppContext());
     static final String URL_COIN_LIST = "https://www.cryptocompare.com/api/data/coinlist/";
-    static final String URL_COIN_PRICE = "https://min-api.cryptocompare.com/data/pricemulti?tsyms=PLN,USD&fsyms=";
+    private final String URL_COIN_PRICE = "https://min-api.cryptocompare.com/data/pricemulti?tsyms=PLN,USD&fsyms=";
 
-    public void letsDoSomeNetworking(String URL_COIN_LIST) {
+    public void connectToAPI(String URL_COIN_LIST) {
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(URL_COIN_LIST, new JsonHttpResponseHandler() {
@@ -52,7 +50,7 @@ public class ApiConnection {
 
     public void getCoinPrices(Cursor cursor) {
 
-        final List <String> myCoinSymbolList = new ArrayList<>();
+        final List<String> myCoinSymbolList = new ArrayList<>();
 
         String currentURL = "";
 
@@ -67,10 +65,10 @@ public class ApiConnection {
         while (cursor.moveToNext()) {
             String symbol = cursor.getString(cursor.getColumnIndex("SYMBOL"));
             Log.d("Symbols to API", symbol);
-            if (cursor.isFirst()){
+            if (cursor.isFirst()) {
                 currentURL = URL_COIN_PRICE + symbol + ",";
-            myCoinSymbolList.add(symbol);}
-            else {
+                myCoinSymbolList.add(symbol);
+            } else {
                 currentURL = currentURL + symbol + ",";
                 myCoinSymbolList.add(symbol);
             }

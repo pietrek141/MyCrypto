@@ -6,17 +6,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CryptoDatabaseHelper extends SQLiteOpenHelper {
 
-    private static  final String DB_NAME = "crypto";
-    private static  final int DB_VERSION = 1;
+    private static final String DB_NAME = "crypto";
+    private static final int DB_VERSION = 1;
     private static CryptoDatabaseHelper mInstance;
 
-    private CryptoDatabaseHelper(Context context){
+    private CryptoDatabaseHelper(Context context) {
 
-        super(context, DB_NAME,null, DB_VERSION);
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
-    public static CryptoDatabaseHelper instance(Context context){
-        if(mInstance == null){
+    public static CryptoDatabaseHelper instance(Context context) {
+        if (mInstance == null) {
             mInstance = new CryptoDatabaseHelper(context.getApplicationContext());
         }
         return mInstance;

@@ -13,31 +13,10 @@ public class MyCoinRepo {
 
     private CryptoDatabaseHelper dbHelper;
 
-    public MyCoinRepo() {
+    MyCoinRepo() {
         dbHelper = CryptoDatabaseHelper.instance(MyApplication.getAppContext());
     }
 
-
-    public static String readFromMyCoin(CryptoDatabaseHelper helper) {
-
-        SQLiteDatabase readableDatabase = helper.getReadableDatabase();
-        String result = "";
-
-        Cursor cursor = readableDatabase.query("MY_CRYPTO", new String[]{"NAME", "BUY_PRICE"}, "_id = ?",
-                new String[]{Integer.toString(1)},
-                null,
-                null,
-                null);
-        if (cursor.moveToFirst()) {
-            result = cursor.getString(1);
-
-        }
-        cursor.close();
-        readableDatabase.close();
-
-        return result;
-
-    }
 
     public void insertToMyCoinByName(String name, String symbol, String price) throws NumberFormatException {
         try {

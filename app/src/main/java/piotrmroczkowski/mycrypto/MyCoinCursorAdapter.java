@@ -17,7 +17,7 @@ import android.widget.ViewSwitcher;
 
 
 public class MyCoinCursorAdapter extends CursorAdapter {
-    public MyCoinCursorAdapter(Context context, Cursor c) {
+    MyCoinCursorAdapter(Context context, Cursor c) {
         super(context, c, 0);
     }
 
@@ -39,49 +39,53 @@ public class MyCoinCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.listview_mycoin_row, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.listview_mycoin_row, parent, false);
+
+        ViewHolder holder = new ViewHolder();
+
+        holder.deleteCryptoButton = view.findViewById(R.id.button_delete_from_MyCrypto);
+        holder.coinName = view.findViewById(R.id.textview_myCoinList_row_coinSymbol);
+        holder.coinPrice = view.findViewById(R.id.textview_myCoinList_row_coinPrice);
+        percent = view.findViewById(R.id.textview_myCoinList_row_percent);
+        holder.walletEye = view.findViewById(R.id.imageSwitcherWalletEye);
+        holder.walletEye.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                ImageView imageView = new ImageView(MyApplication.getAppContext());
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                return imageView;
+            }
+        });
+
+        holder.myCoinRow = view.findViewById(R.id.myCoinRowLayout);
+        view.setTag(holder);
+        return view;
     }
 
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
 
         final Cursor c = cursor;
-
-        ImageButton deleteCryptoButton = view.findViewById(R.id.button_delete_from_MyCrypto);
-
-        final TextView coinName = view.findViewById(R.id.textview_myCoinList_row_coinSymbol);
-        TextView coinPrice = view.findViewById(R.id.textview_myCoinList_row_coinPrice);
-        percent = view.findViewById(R.id.textview_myCoinList_row_percent);
-        ImageSwitcher walletEye = view.findViewById(R.id.imageSwitcherWalletEye);
-        walletEye.setFactory(new ViewSwitcher.ViewFactory() {
-            @Override
-            public View makeView() {
-                ImageView imageView = new ImageView(context);
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                return imageView;
-            }
-        });
-
-        final LinearLayout myCoinRow = view.findViewById(R.id.myCoinRowLayout);
+        final ViewHolder holder = (ViewHolder) view.getTag();
 
         String symbol = c.getString(cursor.getColumnIndex("SYMBOL"));
         String lastPrice = c.getString(cursor.getColumnIndex("LAST_PRICE"));
         String buyPrice = c.getString(cursor.getColumnIndex("BUY_PRICE"));
         String amount = c.getString(cursor.getColumnIndex("AMOUNT"));
 
-        coinName.setText(symbol);
+        holder.coinName.setText(symbol);
 
         if (buyPrice != null || buyPrice.equals("0") && lastPrice != null || lastPrice.equals("0"))
             percent.setText(ViewManager.calculatePercent(buyPrice, lastPrice, percent));
 
-        coinPrice.setText(String.format("$%s", lastPrice));
+        holder.coinPrice.setText(String.format("$%s", lastPrice));
 
         if (amount != null)
-            walletEye.setImageResource(R.drawable.wallet);
+            holder.walletEye.setImageResource(R.drawable.wallet);
         else
-            walletEye.setImageResource(R.drawable.eye);
+            holder.walletEye.setImageResource(R.drawable.eye);
 
-        deleteCryptoButton.setOnClickListener(new View.OnClickListener() {
+        holder.deleteCryptoButton.setOnClickListener(new View.OnClickListener() {
 
             private String coinSymbol = c.getString(c.getColumnIndex("SYMBOL"));
 
@@ -93,7 +97,7 @@ public class MyCoinCursorAdapter extends CursorAdapter {
             }
         });
 
-        myCoinRow.setOnClickListener(new View.OnClickListener() {
+        holder.myCoinRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextView tv = v.findViewById(R.id.textview_myCoinList_row_coinSymbol);
@@ -103,6 +107,14 @@ public class MyCoinCursorAdapter extends CursorAdapter {
                 //ViewManager.initMyCryptoDetailView();
             }
         });
+    }
+
+    class ViewHolder {
+        ImageButton deleteCryptoButton;
+        TextView coinName;
+        TextView coinPrice;
+        ImageSwitcher walletEye;
+        LinearLayout myCoinRow;
     }
 
 

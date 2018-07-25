@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_detail_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,23 +13,27 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/textview_detail_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center|end"
             android:hint="@string/string_name"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:maxLines="1"
+            autofit:minTextSize="24sp" />
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/textview_detail_symbol"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center|start"
             android:hint="@string/string_symbol"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:maxLines="1"
+            autofit:minTextSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -43,32 +48,39 @@
             android:layout_weight="0.9"
             android:orientation="vertical">
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/textview_detail_LastPrice"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0sp"
                 android:gravity="center|end"
                 android:hint="@string/detail_lastPrice"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:maxLines="2"
+                autofit:minTextSize="12sp" />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/textview_detail_BuyPrice"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0sp"
                 android:gravity="center|end"
                 android:hint="@string/detail_buyPrice"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:maxLines="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                autofit:minTextSize="12sp" />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/textview_detail_Percent"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0sp"
                 android:gravity="center|end"
                 android:hint="@string/detail_percent"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:maxLines="1"
+                autofit:minTextSize="6sp" />
 
 
         </LinearLayout>
@@ -79,32 +91,38 @@
             android:layout_weight="1.1"
             android:orientation="vertical">
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/textview_detail_LastPrice_value"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0sp"
                 android:gravity="center"
                 android:hint="@string/detail_lastPrice_value"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:maxLines="1"
+                autofit:minTextSize="16sp" />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/textview_detail_BuyPrice_value"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0sp"
                 android:gravity="center"
                 android:hint="@string/detail_buyPrice_value"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:maxLines="1"
+                autofit:minTextSize="16sp" />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/textview_detail_Percent_value"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0sp"
                 android:gravity="center"
                 android:hint="@string/detail_percent_value"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:maxLines="1"
+                autofit:minTextSize="16sp" />
 
         </LinearLayout>
 
@@ -116,19 +134,21 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/textview_detail_Amount_Input"
             android:layout_width="0sp"
             android:layout_weight="0.9"
             android:layout_height="match_parent"
             android:gravity="center|end"
             android:hint="@string/detail_Amount"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:maxLines="1"
+            autofit:minTextSize="16sp" />
 
         <EditText
             android:id="@+id/editText_detail_Amount_Input_value"
             android:layout_width="0sp"
-            android:layout_weight="0.75"
+            android:layout_weight="0.9"
             android:layout_height="match_parent"
             android:gravity="center"
             android:hint="@string/detail_Amount_value"
@@ -136,13 +156,13 @@
             android:enabled="true"
             android:inputType="number"
             android:backgroundTint="@null"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
 
         <ImageButton
             android:id="@+id/button_add_amount"
             style="@android:style/Widget.Material.Light.ImageButton"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:focusable="false"
             android:layout_gravity="center|end"
             android:src="@android:drawable/ic_menu_add" />
@@ -154,14 +174,16 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/textview_detail_Money"
             android:layout_width="0sp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="center"
             android:hint="@string/detail_Money"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:maxLines="1"
+            autofit:minTextSize="24sp" />
     </LinearLayout>
 
 </LinearLayout>
