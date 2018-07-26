@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +73,7 @@ public class MasterFragment extends Fragment {
         ViewManager.initMyCryptoView();
     }
 
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
     }
@@ -84,6 +86,7 @@ public class MasterFragment extends Fragment {
 
 
         CryptoDatabaseHelper.instance(getContext());
+        ViewManager.swipeRefreshLayout = view.findViewById(R.id.fragment_master_swipe_refresh_layout);
         ViewManager.everyCoinListView = view.findViewById(R.id.listViewEveryCoin);
         ViewManager.myCoinListView = view.findViewById(R.id.listViewMyCoin);
         ViewManager.searchView = view.findViewById(R.id.searchView);
@@ -103,6 +106,12 @@ public class MasterFragment extends Fragment {
             e.printStackTrace();
         }
 
+        ViewManager.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ViewManager.updateMyCrypto();
+            }
+        });
 
         ViewManager.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

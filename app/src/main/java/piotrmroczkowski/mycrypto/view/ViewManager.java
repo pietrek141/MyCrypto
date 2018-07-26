@@ -3,6 +3,7 @@ package piotrmroczkowski.mycrypto.view;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
@@ -29,6 +30,7 @@ public class ViewManager {
     public static TextView allPercent;
     public static ListView everyCoinListView;
     public static ListView myCoinListView;
+    public static SwipeRefreshLayout swipeRefreshLayout;
     public static EveryCoinRepo everyCoinRepo = new EveryCoinRepo();
     public static MyCoinRepo myCoinRepo = new MyCoinRepo();
     public static ApiConnection apiConnection = new ApiConnection();
@@ -37,6 +39,7 @@ public class ViewManager {
 
         initMyCryptoView();
         getMyCoinPrices();
+        ViewManager.swipeRefreshLayout.setRefreshing(false);
     }
 
     public static Cursor showEveryCoinList(String query) {
