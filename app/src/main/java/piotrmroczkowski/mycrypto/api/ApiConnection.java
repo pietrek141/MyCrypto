@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.api;
 
 import android.database.Cursor;
 import android.util.Log;
@@ -13,14 +13,18 @@ import java.util.List;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
+import piotrmroczkowski.mycrypto.cryptocurrency.Cryptocurrency;
+import piotrmroczkowski.mycrypto.repository.EveryCoinRepo;
+import piotrmroczkowski.mycrypto.repository.MyCoinRepo;
+import piotrmroczkowski.mycrypto.view.ViewManager;
 
-import static piotrmroczkowski.mycrypto.Cryptocurrency.everyCoinList;
+import static piotrmroczkowski.mycrypto.cryptocurrency.Cryptocurrency.everyCoinList;
 
 public class ApiConnection {
 
     private EveryCoinRepo everyCoinRepo = new EveryCoinRepo();
     private MyCoinRepo myCoinRepo = new MyCoinRepo();
-    static final String URL_COIN_LIST = "https://www.cryptocompare.com/api/data/coinlist/";
+    public static final String URL_COIN_LIST = "https://www.cryptocompare.com/api/data/coinlist/";
     private final String URL_COIN_PRICE = "https://min-api.cryptocompare.com/data/pricemulti?tsyms=PLN,USD&fsyms=";
 
     public void connectToAPI(String URL_COIN_LIST) {

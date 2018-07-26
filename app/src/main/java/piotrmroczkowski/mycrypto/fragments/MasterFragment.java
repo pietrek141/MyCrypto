@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.fragments;
 
 
 import android.app.Activity;
@@ -14,6 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import piotrmroczkowski.mycrypto.R;
+import piotrmroczkowski.mycrypto.api.ApiConnection;
+import piotrmroczkowski.mycrypto.app.MyApplication;
+import piotrmroczkowski.mycrypto.repository.CryptoDatabaseHelper;
+import piotrmroczkowski.mycrypto.view.ViewManager;
 
 
 public class MasterFragment extends Fragment {

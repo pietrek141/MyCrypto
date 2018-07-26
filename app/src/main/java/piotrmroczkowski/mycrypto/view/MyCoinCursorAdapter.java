@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.view;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -15,9 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import piotrmroczkowski.mycrypto.R;
+import piotrmroczkowski.mycrypto.app.MyApplication;
+import piotrmroczkowski.mycrypto.fragments.MasterFragment;
+import piotrmroczkowski.mycrypto.repository.MyCoinRepo;
+
 
 public class MyCoinCursorAdapter extends CursorAdapter {
-    MyCoinCursorAdapter(Context context, Cursor c) {
+    public MyCoinCursorAdapter(Context context, Cursor c) {
         super(context, c, 0);
     }
 

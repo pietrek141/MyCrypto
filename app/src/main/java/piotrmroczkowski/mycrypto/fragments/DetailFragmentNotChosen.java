@@ -1,10 +1,12 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import piotrmroczkowski.mycrypto.R;
 
 
 public class DetailFragmentNotChosen extends Fragment {

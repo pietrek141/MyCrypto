@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.activities;
 
 
 import android.content.Context;
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+
+import piotrmroczkowski.mycrypto.R;
+import piotrmroczkowski.mycrypto.fragments.DetailFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -36,11 +39,4 @@ public class DetailActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void showNotChosenDetail() {
-        DetailFragmentNotChosen fragment = DetailFragmentNotChosen.newFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction()
-                .add(R.id.frame_layout_detail, fragment)
-                .commit();
-    }
 }

@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.repository;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,12 +24,12 @@ public class CryptoDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS " + "EVERY_COIN");
+        //db.execSQL("DROP TABLE IF EXISTS " + "EVERY_COIN");
         db.execSQL("CREATE TABLE IF NOT EXISTS EVERY_COIN ( _id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "NAME TEXT, "
                 + "SYMBOL TEXT);");
 
-        db.execSQL("DROP TABLE IF EXISTS " + "MY_CRYPTO");
+        //db.execSQL("DROP TABLE IF EXISTS " + "MY_CRYPTO");
         db.execSQL("CREATE TABLE IF NOT EXISTS MY_CRYPTO ( _id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "NAME TEXT, "
                 + "SYMBOL TEXT, "

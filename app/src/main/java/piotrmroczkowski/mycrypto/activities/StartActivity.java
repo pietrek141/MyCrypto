@@ -1,10 +1,15 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.activities;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+
+import piotrmroczkowski.mycrypto.R;
+import piotrmroczkowski.mycrypto.fragments.DetailFragment;
+import piotrmroczkowski.mycrypto.fragments.DetailFragmentNotChosen;
+import piotrmroczkowski.mycrypto.fragments.MasterFragment;
 
 
 public class StartActivity extends AppCompatActivity implements MasterFragment.ItemClickListener, MasterFragment.DeleteClickListener {

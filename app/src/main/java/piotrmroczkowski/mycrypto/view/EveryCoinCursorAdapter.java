@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.view;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -16,6 +16,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import me.grantland.widget.AutofitTextView;
+import piotrmroczkowski.mycrypto.R;
+import piotrmroczkowski.mycrypto.app.MyApplication;
+import piotrmroczkowski.mycrypto.repository.MyCoinRepo;
 
 
 public class EveryCoinCursorAdapter extends CursorAdapter {

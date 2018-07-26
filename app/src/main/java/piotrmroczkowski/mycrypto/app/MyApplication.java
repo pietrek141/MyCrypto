@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.app;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,12 +8,15 @@ import android.util.Log;
 
 import java.util.List;
 
-import static piotrmroczkowski.mycrypto.Cryptocurrency.everyCoinList;
+import piotrmroczkowski.mycrypto.app.MyApplication;
+import piotrmroczkowski.mycrypto.cryptocurrency.Cryptocurrency;
+
+import static piotrmroczkowski.mycrypto.cryptocurrency.Cryptocurrency.everyCoinList;
 
 public class EveryCoinRepo {
     private CryptoDatabaseHelper dbHelper;
 
-    EveryCoinRepo() {
+    public EveryCoinRepo() {
         dbHelper = CryptoDatabaseHelper.instance(MyApplication.getAppContext());
     }
 

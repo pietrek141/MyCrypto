@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.view;
 
 import android.database.Cursor;
 import android.graphics.Color;
@@ -13,6 +13,12 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
+import piotrmroczkowski.mycrypto.R;
+import piotrmroczkowski.mycrypto.api.ApiConnection;
+import piotrmroczkowski.mycrypto.app.MyApplication;
+import piotrmroczkowski.mycrypto.repository.EveryCoinRepo;
+import piotrmroczkowski.mycrypto.repository.MyCoinRepo;
+
 
 public class ViewManager {
 
@@ -21,8 +27,8 @@ public class ViewManager {
     public static SearchView searchView;
     public static TextView allMoney;
     public static TextView allPercent;
-    static ListView everyCoinListView;
-    static ListView myCoinListView;
+    public static ListView everyCoinListView;
+    public static ListView myCoinListView;
     public static EveryCoinRepo everyCoinRepo = new EveryCoinRepo();
     public static MyCoinRepo myCoinRepo = new MyCoinRepo();
     public static ApiConnection apiConnection = new ApiConnection();

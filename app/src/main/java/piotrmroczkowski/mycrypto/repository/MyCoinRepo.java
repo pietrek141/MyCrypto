@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -9,11 +9,13 @@ import android.widget.Toast;
 
 import java.util.Map;
 
+import piotrmroczkowski.mycrypto.app.MyApplication;
+
 public class MyCoinRepo {
 
     private CryptoDatabaseHelper dbHelper;
 
-    MyCoinRepo() {
+    public MyCoinRepo() {
         dbHelper = CryptoDatabaseHelper.instance(MyApplication.getAppContext());
     }
 

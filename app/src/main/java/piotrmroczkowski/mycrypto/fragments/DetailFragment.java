@@ -1,4 +1,4 @@
-package piotrmroczkowski.mycrypto;
+package piotrmroczkowski.mycrypto.fragments;
 
 import android.database.Cursor;
 import android.graphics.Color;
@@ -18,7 +18,11 @@ import android.widget.Toast;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
-import static piotrmroczkowski.mycrypto.ViewManager.myCoinRepo;
+import piotrmroczkowski.mycrypto.R;
+import piotrmroczkowski.mycrypto.app.MyApplication;
+import piotrmroczkowski.mycrypto.view.ViewManager;
+
+import static piotrmroczkowski.mycrypto.view.ViewManager.myCoinRepo;
 
 
 public class DetailFragment extends Fragment {
