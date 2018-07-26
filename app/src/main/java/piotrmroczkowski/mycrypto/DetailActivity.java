@@ -35,4 +35,12 @@ public class DetailActivity extends AppCompatActivity {
                 .add(R.id.frame_layout_detail, fragment)
                 .commit();
     }
+
+    public void showNotChosenDetail() {
+        DetailFragmentNotChosen fragment = DetailFragmentNotChosen.newFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction()
+                .add(R.id.frame_layout_detail, fragment)
+                .commit();
+    }
 }

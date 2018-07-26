@@ -94,6 +94,7 @@ public class MyCoinCursorAdapter extends CursorAdapter {
                 Log.d("MyCursorAdapter", "Deleted: " + coinSymbol);
                 myCoinRepo.deleteFromMyCoinByName(coinSymbol);
                 ViewManager.updateMyCrypto();
+                MasterFragment.dListener.deleteClicked();
             }
         });
 

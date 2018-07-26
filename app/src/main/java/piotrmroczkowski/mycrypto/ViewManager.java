@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -51,6 +52,8 @@ public class ViewManager {
         String allPercentToShow = calculatePercent(allBuyMoneyValue.toString(), allLastMoneyValue.toString(), allPercent);
         allPercent.setText(allPercentToShow);
         allMoney.setText(allLastMoneyToShow);
+        ViewManager.everyCoinListView.setVisibility(View.GONE);
+        ViewManager.myCoinListView.setVisibility(View.VISIBLE);
 
     }
 

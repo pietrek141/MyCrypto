@@ -107,7 +107,7 @@ public class DetailFragment extends Fragment {
 
         if (buyPrice != null || buyPrice.equals("") && lastPrice != null || lastPrice.equals(""))
             holder.percentDetail.setText(calculatePercent(holder, buyPrice, lastPrice));
-        if (lastPrice != null || lastPrice.equals("") && Integer.valueOf(amount) != null || Integer.valueOf(amount).equals(""))
+        if (lastPrice != null && Integer.valueOf(amount) != null)
             holder.moneyDetail.setText(String.format("$%s", calculateMoney(lastPrice, amount)));
     }
 

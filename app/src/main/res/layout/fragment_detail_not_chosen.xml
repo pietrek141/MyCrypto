@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_detail_linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/textview_choose_item"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20sp"
+            android:layout_marginStart="20sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minLines="2"
+            android:maxLines="3"
+            android:text="@string/Choose_row"
+            android:textSize="24sp"
+            autofit:minTextSize="24sp" />
+
+    </LinearLayout>
+</LinearLayout>

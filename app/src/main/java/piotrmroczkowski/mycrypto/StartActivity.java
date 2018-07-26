@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 
-public class StartActivity extends AppCompatActivity implements MasterFragment.ItemClickListener {
+public class StartActivity extends AppCompatActivity implements MasterFragment.ItemClickListener, MasterFragment.DeleteClickListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,18 @@ public class StartActivity extends AppCompatActivity implements MasterFragment.I
             startActivity(intent);
         } else {
             DetailFragment fragment = DetailFragment.newFragment(symbol);
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.frame_layout_detail, fragment)
+                    .commit();
+        }
+    }
+
+
+    @Override
+    public void deleteClicked() {
+        if (findViewById(R.id.frame_layout_detail) != null) {
+            DetailFragmentNotChosen fragment = DetailFragmentNotChosen.newFragment();
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .replace(R.id.frame_layout_detail, fragment)

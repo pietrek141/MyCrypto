@@ -2,9 +2,11 @@ package piotrmroczkowski.mycrypto;
 
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,9 +16,6 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MasterFragment extends Fragment {
 
 
@@ -28,7 +27,13 @@ public class MasterFragment extends Fragment {
         void itemClicked(String symbol);
     }
 
+    public interface DeleteClickListener {
+        void deleteClicked();
+    }
+
     public static ItemClickListener mListener;
+
+    public static DeleteClickListener dListener;
 
 
     public MasterFragment() {
@@ -38,24 +43,31 @@ public class MasterFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mListener = (ItemClickListener) context;
+        dListener = (DeleteClickListener) context;
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mListener = (ItemClickListener) activity;
+        dListener = (DeleteClickListener) activity;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        dListener = null;
     }
 
     @Override
     public void onResume() {
         super.onResume();
         ViewManager.initMyCryptoView();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
     }
 
     @Override
@@ -77,13 +89,13 @@ public class MasterFragment extends Fragment {
         connection.connectToAPI(ApiConnection.URL_COIN_LIST);
 
 
-/*        SearchManager manager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchManager manager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         //is it necessary?
         try {
             ViewManager.searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
         } catch (NullPointerException e) {
             e.printStackTrace();
-        }*/
+        }
 
 
         ViewManager.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

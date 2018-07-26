@@ -11,9 +11,10 @@
     <string name="detail_Money">Money</string>
     <string name="detail_lastPrice_value">...USD</string>
     <string name="detail_buyPrice_value">...USD</string>
-    <string name="detail_Amount_value">put your amount</string>
+    <string name="detail_Amount_value">put amount</string>
     <string name="detail_percent">Gain/Loos:</string>
     <string name="detail_percent_value">...USD</string>
     <string name="master_Money">Money</string>
     <string name="master_Percent">%</string>
+    <string name="Choose_row">Choose the row to see the details</string>
 </resources>
