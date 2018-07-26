@@ -141,6 +141,7 @@ public class DetailFragment extends Fragment {
         DecimalFormat df2 = new DecimalFormat("#.##");
 
         String result = df2.format(percentValue);
+        result = result.replaceAll(",", ".");
         if (Double.parseDouble(result) >= 0) {
             result = "+" + result + "%";
             holder.percentDetail.setTextColor(ContextCompat.getColor(MyApplication.getAppContext(), R.color.Green800));

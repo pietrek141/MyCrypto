@@ -87,6 +87,7 @@ public class ViewManager {
         DecimalFormat df2 = new DecimalFormat("#.##");
 
         String result = df2.format(percentValue);
+        result = result.replaceAll(",", ".");
         if (Double.parseDouble(result) >= 0) {
             result = "+" + result + "%";
             percentTextView.setTextColor(ContextCompat.getColor(MyApplication.getAppContext(), R.color.Green800));
